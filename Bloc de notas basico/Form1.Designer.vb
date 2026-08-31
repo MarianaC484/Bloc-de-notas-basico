@@ -43,7 +43,11 @@ Partial Class frmBlocNotas
         mnuColorTexto = New ToolStripMenuItem()
         mnuAjusteDeLinea = New ToolStripMenuItem()
         VerToolStripMenuItem = New ToolStripMenuItem()
+        mnuZoomMas = New ToolStripMenuItem()
+        mnuZoomMenos = New ToolStripMenuItem()
+        mnuZoomRestablecer = New ToolStripMenuItem()
         AyudaToolStripMenuItem = New ToolStripMenuItem()
+        mnuAcercaDe = New ToolStripMenuItem()
         tsPrincipal = New ToolStrip()
         tsbNuevo = New ToolStripButton()
         tsbAbrir = New ToolStripButton()
@@ -77,10 +81,8 @@ Partial Class frmBlocNotas
         dlgColor = New ColorDialog()
         tmrReloj = New Timer(components)
         mnuAjusteLinea = New ToolStripMenuItem()
-        mnuZoomMas = New ToolStripMenuItem()
-        mnuZoomMenos = New ToolStripMenuItem()
-        mnuZoomRestablecer = New ToolStripMenuItem()
-        mnuAcercaDe = New ToolStripMenuItem()
+        AngelicaMorenoToolStripMenuItem = New ToolStripMenuItem()
+        IvethToruñoToolStripMenuItem = New ToolStripMenuItem()
         mnuPrincipal.SuspendLayout()
         tsPrincipal.SuspendLayout()
         cmsTexto.SuspendLayout()
@@ -220,12 +222,36 @@ Partial Class frmBlocNotas
         VerToolStripMenuItem.Size = New Size(53, 29)
         VerToolStripMenuItem.Text = "Ver"
         ' 
+        ' mnuZoomMas
+        ' 
+        mnuZoomMas.Name = "mnuZoomMas"
+        mnuZoomMas.Size = New Size(270, 34)
+        mnuZoomMas.Text = "Zoom + "
+        ' 
+        ' mnuZoomMenos
+        ' 
+        mnuZoomMenos.Name = "mnuZoomMenos"
+        mnuZoomMenos.Size = New Size(270, 34)
+        mnuZoomMenos.Text = "Zoom -"
+        ' 
+        ' mnuZoomRestablecer
+        ' 
+        mnuZoomRestablecer.Name = "mnuZoomRestablecer"
+        mnuZoomRestablecer.Size = New Size(270, 34)
+        mnuZoomRestablecer.Text = "Restablecer zoom"
+        ' 
         ' AyudaToolStripMenuItem
         ' 
-        AyudaToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuAcercaDe})
+        AyudaToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuAcercaDe, AngelicaMorenoToolStripMenuItem, IvethToruñoToolStripMenuItem})
         AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
         AyudaToolStripMenuItem.Size = New Size(79, 29)
         AyudaToolStripMenuItem.Text = "Ayuda"
+        ' 
+        ' mnuAcercaDe
+        ' 
+        mnuAcercaDe.Name = "mnuAcercaDe"
+        mnuAcercaDe.Size = New Size(270, 34)
+        mnuAcercaDe.Text = "Acerca de..."
         ' 
         ' tsPrincipal
         ' 
@@ -460,29 +486,17 @@ Partial Class frmBlocNotas
         mnuAjusteLinea.Size = New Size(240, 32)
         mnuAjusteLinea.Text = "Ajuste de linea"
         ' 
-        ' mnuZoomMas
+        ' AngelicaMorenoToolStripMenuItem
         ' 
-        mnuZoomMas.Name = "mnuZoomMas"
-        mnuZoomMas.Size = New Size(270, 34)
-        mnuZoomMas.Text = "Zoom + "
+        AngelicaMorenoToolStripMenuItem.Name = "AngelicaMorenoToolStripMenuItem"
+        AngelicaMorenoToolStripMenuItem.Size = New Size(270, 34)
+        AngelicaMorenoToolStripMenuItem.Text = "Angelica Moreno"
         ' 
-        ' mnuZoomMenos
+        ' IvethToruñoToolStripMenuItem
         ' 
-        mnuZoomMenos.Name = "mnuZoomMenos"
-        mnuZoomMenos.Size = New Size(270, 34)
-        mnuZoomMenos.Text = "Zoom -"
-        ' 
-        ' mnuZoomRestablecer
-        ' 
-        mnuZoomRestablecer.Name = "mnuZoomRestablecer"
-        mnuZoomRestablecer.Size = New Size(270, 34)
-        mnuZoomRestablecer.Text = "Restablecer zoom"
-        ' 
-        ' mnuAcercaDe
-        ' 
-        mnuAcercaDe.Name = "mnuAcercaDe"
-        mnuAcercaDe.Size = New Size(270, 34)
-        mnuAcercaDe.Text = "Acerca de..."
+        IvethToruñoToolStripMenuItem.Name = "IvethToruñoToolStripMenuItem"
+        IvethToruñoToolStripMenuItem.Size = New Size(270, 34)
+        IvethToruñoToolStripMenuItem.Text = "Iveth Toruño"
         ' 
         ' frmBlocNotas
         ' 
@@ -566,5 +580,7 @@ Partial Class frmBlocNotas
     Friend WithEvents mnuZoomMenos As ToolStripMenuItem
     Friend WithEvents mnuZoomRestablecer As ToolStripMenuItem
     Friend WithEvents mnuAcercaDe As ToolStripMenuItem
+    Friend WithEvents AngelicaMorenoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents IvethToruñoToolStripMenuItem As ToolStripMenuItem
 
 End Class
