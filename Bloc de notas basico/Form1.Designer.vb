@@ -52,6 +52,8 @@ Partial Class frmBlocNotas
         mnuContarCaracteres = New ToolStripMenuItem()
         AyudaToolStripMenuItem = New ToolStripMenuItem()
         mnuAcercaDe = New ToolStripMenuItem()
+        AngelicaMorenoToolStripMenuItem = New ToolStripMenuItem()
+        IvethToruñoToolStripMenuItem = New ToolStripMenuItem()
         tsPrincipal = New ToolStrip()
         tsbNuevo = New ToolStripButton()
         tsbAbrir = New ToolStripButton()
@@ -87,13 +89,16 @@ Partial Class frmBlocNotas
         mnuAjusteLinea = New ToolStripMenuItem()
         mnuHerramientas = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripMenuItem()
-        txtBuscar = New TextBox()
-        btnBuscar = New Button()
-        lblBuscar = New Label()
+        tslBuscar = New ToolStripLabel()
+        tsBuscar = New ToolStrip()
+        tslBuscar1 = New ToolStripLabel()
+        txtBuscar = New ToolStripTextBox()
+        btnBuscar = New ToolStripButton()
         mnuPrincipal.SuspendLayout()
         tsPrincipal.SuspendLayout()
         cmsTexto.SuspendLayout()
         stsInferior.SuspendLayout()
+        tsBuscar.SuspendLayout()
         SuspendLayout()
         ' 
         ' mnuPrincipal
@@ -275,7 +280,7 @@ Partial Class frmBlocNotas
         ' 
         ' AyudaToolStripMenuItem
         ' 
-        AyudaToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuAcercaDe})
+        AyudaToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {mnuAcercaDe, AngelicaMorenoToolStripMenuItem, IvethToruñoToolStripMenuItem})
         AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
         AyudaToolStripMenuItem.Size = New Size(53, 22)
         AyudaToolStripMenuItem.Text = "Ayuda"
@@ -283,8 +288,20 @@ Partial Class frmBlocNotas
         ' mnuAcercaDe
         ' 
         mnuAcercaDe.Name = "mnuAcercaDe"
-        mnuAcercaDe.Size = New Size(135, 22)
+        mnuAcercaDe.Size = New Size(165, 22)
         mnuAcercaDe.Text = "Acerca de..."
+        ' 
+        ' AngelicaMorenoToolStripMenuItem
+        ' 
+        AngelicaMorenoToolStripMenuItem.Name = "AngelicaMorenoToolStripMenuItem"
+        AngelicaMorenoToolStripMenuItem.Size = New Size(165, 22)
+        AngelicaMorenoToolStripMenuItem.Text = "Angelica Moreno"
+        ' 
+        ' IvethToruñoToolStripMenuItem
+        ' 
+        IvethToruñoToolStripMenuItem.Name = "IvethToruñoToolStripMenuItem"
+        IvethToruñoToolStripMenuItem.Size = New Size(165, 22)
+        IvethToruñoToolStripMenuItem.Text = "Iveth Toruño"
         ' 
         ' tsPrincipal
         ' 
@@ -405,7 +422,7 @@ Partial Class frmBlocNotas
         ' 
         rtbDocumento.ContextMenuStrip = cmsTexto
         rtbDocumento.Dock = DockStyle.Fill
-        rtbDocumento.Font = New Font("Consolas", 11F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        rtbDocumento.Font = New Font("Consolas", 11.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         rtbDocumento.Location = New Point(0, 55)
         rtbDocumento.Margin = New Padding(2)
         rtbDocumento.Name = "rtbDocumento"
@@ -464,7 +481,7 @@ Partial Class frmBlocNotas
         ' stsEstado
         ' 
         stsEstado.Name = "stsEstado"
-        stsEstado.Size = New Size(238, 17)
+        stsEstado.Size = New Size(280, 17)
         stsEstado.Spring = True
         stsEstado.Text = "Listo"
         ' 
@@ -477,20 +494,20 @@ Partial Class frmBlocNotas
         ' stsCaracteres
         ' 
         stsCaracteres.Name = "stsCaracteres"
-        stsCaracteres.Size = New Size(76, 17)
-        stsCaracteres.Text = "stsCaracteres"
+        stsCaracteres.Size = New Size(62, 17)
+        stsCaracteres.Text = "Caracteres"
         ' 
         ' stsZoom
         ' 
         stsZoom.Name = "stsZoom"
-        stsZoom.Size = New Size(53, 17)
-        stsZoom.Text = "stsZoom"
+        stsZoom.Size = New Size(39, 17)
+        stsZoom.Text = "Zoom"
         ' 
         ' stsFechaHora
         ' 
         stsFechaHora.Name = "stsFechaHora"
-        stsFechaHora.Size = New Size(78, 17)
-        stsFechaHora.Text = "stsFechaHora"
+        stsFechaHora.Size = New Size(64, 17)
+        stsFechaHora.Text = "FechaHora"
         ' 
         ' dlgAbrir
         ' 
@@ -533,39 +550,49 @@ Partial Class frmBlocNotas
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         ToolStripMenuItem1.Size = New Size(67, 22)
         ' 
+        ' tslBuscar
+        ' 
+        tslBuscar.Name = "tslBuscar"
+        tslBuscar.Size = New Size(45, 22)
+        tslBuscar.Text = "Buscar:"
+        ' 
+        ' tsBuscar
+        ' 
+        tsBuscar.Dock = DockStyle.Bottom
+        tsBuscar.Items.AddRange(New ToolStripItem() {tslBuscar1, txtBuscar, btnBuscar})
+        tsBuscar.Location = New Point(0, 251)
+        tsBuscar.Name = "tsBuscar"
+        tsBuscar.Size = New Size(575, 25)
+        tsBuscar.TabIndex = 5
+        tsBuscar.Text = "ToolStrip2"
+        ' 
+        ' tslBuscar1
+        ' 
+        tslBuscar1.Name = "tslBuscar1"
+        tslBuscar1.Size = New Size(45, 22)
+        tslBuscar1.Text = "Buscar:"
+        ' 
         ' txtBuscar
         ' 
-        txtBuscar.Location = New Point(92, 241)
+        txtBuscar.AutoSize = False
         txtBuscar.Name = "txtBuscar"
-        txtBuscar.Size = New Size(314, 23)
-        txtBuscar.TabIndex = 5
+        txtBuscar.Size = New Size(100, 25)
         ' 
         ' btnBuscar
         ' 
-        btnBuscar.Location = New Point(412, 241)
+        btnBuscar.DisplayStyle = ToolStripItemDisplayStyle.Image
+        btnBuscar.Image = CType(resources.GetObject("btnBuscar.Image"), Image)
+        btnBuscar.ImageTransparentColor = Color.Magenta
         btnBuscar.Name = "btnBuscar"
-        btnBuscar.Size = New Size(57, 23)
-        btnBuscar.TabIndex = 6
+        btnBuscar.Size = New Size(23, 22)
         btnBuscar.Text = "Buscar"
-        btnBuscar.UseVisualStyleBackColor = True
-        ' 
-        ' lblBuscar
-        ' 
-        lblBuscar.AutoSize = True
-        lblBuscar.Location = New Point(12, 249)
-        lblBuscar.Name = "lblBuscar"
-        lblBuscar.Size = New Size(74, 15)
-        lblBuscar.TabIndex = 7
-        lblBuscar.Text = "Buscar texto:"
         ' 
         ' frmBlocNotas
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(575, 298)
-        Controls.Add(lblBuscar)
-        Controls.Add(btnBuscar)
-        Controls.Add(txtBuscar)
+        Controls.Add(tsBuscar)
         Controls.Add(stsInferior)
         Controls.Add(rtbDocumento)
         Controls.Add(tsPrincipal)
@@ -583,6 +610,8 @@ Partial Class frmBlocNotas
         cmsTexto.ResumeLayout(False)
         stsInferior.ResumeLayout(False)
         stsInferior.PerformLayout()
+        tsBuscar.ResumeLayout(False)
+        tsBuscar.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -650,8 +679,16 @@ Partial Class frmBlocNotas
     Friend WithEvents mnuBuscar As ToolStripMenuItem
     Friend WithEvents mnuContarPalabras As ToolStripMenuItem
     Friend WithEvents mnuContarCaracteres As ToolStripMenuItem
-    Friend WithEvents txtBuscar As TextBox
-    Friend WithEvents btnBuscar As Button
     Friend WithEvents lblBuscar As Label
+    Friend WithEvents AngelicaMorenoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents IvethToruñoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStrip1 As ToolStrip
+    Friend WithEvents tslBuscar As ToolStripLabel
+    Friend WithEvents ToolStripTextBox1 As ToolStripTextBox
+    Friend WithEvents tsBuscar As ToolStrip
+    Friend WithEvents tslBuscar1 As ToolStripLabel
+    Friend WithEvents txtBuscar As ToolStripTextBox
+    Friend WithEvents btnBuscar As ToolStripButton
+    'Friend WithEvents btnBuscar As ToolStripButton
 
 End Class

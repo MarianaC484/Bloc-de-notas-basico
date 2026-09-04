@@ -1,16 +1,23 @@
 ﻿Imports System.IO
 Imports System.Drawing
+Imports System.Drawing.Text
 
 Public Class frmBlocNotas
 
     Private rutaActual As String = String.Empty
     Private documentoModificado As Boolean = False
-    Private Sub rtbDocumento_TextChanged(sender As Object, e As EventArgs)
+
+
+
+    Private Sub rtbDocumento_TextChanged(sender As Object, e As EventArgs) Handles rtbDocumento.TextChanged
         documentoModificado = True
         ActualizarBarraEstado()
     End Sub
 
     Private Sub frmBlocNotas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Pantalla completa
+        Me.WindowState = FormWindowState.Maximized
+
         ' Configuración inicial del RichTextBox
         rtbDocumento.Font = New Font("Consolas", 11)
         rtbDocumento.WordWrap = True
@@ -55,7 +62,7 @@ Public Class frmBlocNotas
     e As EventArgs
 ) Handles mnuSalir.Click
 
-        If rtbDocumento.Modified Then
+        If documentoModificado Then
 
             Dim respuesta As DialogResult =
             MessageBox.Show(
@@ -69,7 +76,7 @@ Public Class frmBlocNotas
 
                 GuardarDocumento(False)
 
-                If rtbDocumento.Modified Then
+                If documentoModificado Then
                     Exit Sub
                 End If
 
@@ -123,7 +130,7 @@ Public Class frmBlocNotas
     End Sub
 
     Private Sub mnuAjusteDeLinea_Click(sender As Object, e As EventArgs) Handles mnuAjusteDeLinea.Click
-        rtbDocumento.WordWrap = mnuAjusteLinea.Checked
+        rtbDocumento.WordWrap = mnuAjusteDeLinea.Checked
     End Sub
 
     Private Sub mnuZoomMas_Click(sender As Object, e As EventArgs) Handles mnuZoomMas.Click
@@ -284,18 +291,37 @@ Public Class frmBlocNotas
 
     End Sub
 
+    ''Nuevo Documento
     Private Sub NuevoDocumento()
         If documentoModificado Then
-            Dim r = MessageBox.Show("¿Desea guardar los cambios antes de continuar?",
-                                     "Bloc de Notas", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
-            If r = DialogResult.Cancel Then Exit Sub
-            If r = DialogResult.Yes Then GuardarDocumento(False)
+            Dim r = MessageBox.Show(
+                "¿Desea guardar los cambios antes de continuar?",
+                "Bloc de Notas",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Question)
+
+            If r = DialogResult.Cancel Then
+                Exit Sub
+            End If
+
+            If r = DialogResult.Yes Then
+
+                GuardarDocumento(False)
+
+                If documentoModificado Then
+                    Exit Sub
+                End If
+            End If
         End If
+
         rtbDocumento.Clear()
         rutaActual = String.Empty
         documentoModificado = False
-        Me.Text = "Bloc de Notas VB.NET - [Nuevo documento]"
+
+        Me.Text = "Bloc de Notas VB.NET - [nuevo documento]"
+
         ActualizarBarraEstado()
+
     End Sub
 
     Private Sub AbrirDocumento()
@@ -408,73 +434,59 @@ Public Class frmBlocNotas
 
     End Sub
 
-    Private Sub mnuHerramientas_Click(sender As Object, e As EventArgs) Handles mnuHerramientas.Click
+    '    'menu buscar
+    '   Private Sub mnuBuscar_Click(sender As Object, e As EventArgs) Handles mnuBuscar.Click
+    '
+    '     txtBuscar.Focus()
+    '
+    'End Sub
 
-    End Sub
+    'boton buscar con funcion click
+    'Private Sub btnBuscar_Click(sender As Object, e As EventArgs)
 
-    Private Sub rtbDocumento_TextChanged_1(sender As Object, e As EventArgs)
+    'If String.IsNullOrWhiteSpace(txtBuscar.Text) Then
 
-    End Sub
+    '       MessageBox.Show(
+    '          "Escriba una palabra o frase para buscar.",
+    '         "Buscar",
+    '        MessageBoxButtons.OK,
+    '       MessageBoxIcon.Information
+    '  )
 
-    Private Sub CToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles mnuContarCaracteres.Click
+    'Exit Sub
 
-    End Sub
-    Private Sub mnuBuscar_Click(
-    sender As Object,
-    e As EventArgs
-) Handles mnuBuscar.Click
+    'End If
 
-        txtBuscar.Focus()
+    'Dim texto = rtbDocumento.Text
+    '    Dim palabra = txtBuscar.Text
 
-    End Sub
-    Private Sub btnBuscar_Click(
-    sender As Object,
-    e As EventArgs
-) Handles btnBuscar.Click
+    'Dim posicion =
+    '    texto.IndexOf(
+    '         palabra,
+    '          StringComparison.CurrentCultureIgnoreCase
+    '       )
 
-        If String.IsNullOrWhiteSpace(txtBuscar.Text) Then
+    '    If posicion >= 0 Then
 
-            MessageBox.Show(
-                "Escriba una palabra o frase para buscar.",
-                "Buscar",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            )
+    'rtbDocumento.Select(
+    '  posicion,
+    '   palabra.Length
+    ')
+    '
+    '   rtbDocumento.Focus()
+    '
+    '    Else
 
-            Exit Sub
-
-        End If
-
-        Dim texto As String = rtbDocumento.Text
-        Dim palabra As String = txtBuscar.Text
-
-        Dim posicion As Integer =
-            texto.IndexOf(
-                palabra,
-                StringComparison.CurrentCultureIgnoreCase
-            )
-
-        If posicion >= 0 Then
-
-            rtbDocumento.Select(
-                posicion,
-                palabra.Length
-            )
-
-            rtbDocumento.Focus()
-
-        Else
-
-            MessageBox.Show(
-                "No se encontró el texto buscado.",
-                "Buscar",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            )
-
-        End If
-
-    End Sub
+    'MessageBox.Show(
+    '"No se encontró el texto buscado.",
+    ' "Buscar",
+    '  MessageBoxButtons.OK,
+    '   MessageBoxIcon.Information
+    ')
+    '
+    'End If
+    '
+    'End Sub
     Private Sub mnuContarCaracteres_Click(
     sender As Object,
     e As EventArgs
@@ -526,31 +538,43 @@ Public Class frmBlocNotas
         )
 
     End Sub
+
+    ''btn buscar con funcion a click
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+
+        Dim palabra As String = txtBuscar.Text.Trim()
+
+        If String.IsNullOrWhiteSpace(txtBuscar.Text) Then
+            MessageBox.Show(
+                "Escriba una palabra o frase para buscar.",
+                "Buscar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+            Exit Sub
+        End If
+
+        Dim texto As String = rtbDocumento.Text
+
+        Dim posicion As Integer = texto.IndexOf(palabra, StringComparison.OrdinalIgnoreCase)
+
+        If posicion >= 0 Then
+
+            rtbDocumento.Select(posicion, palabra.Length)
+            rtbDocumento.Focus()
+        Else
+            MessageBox.Show(
+                "No se encontró el texto buscado.",
+                "Buscar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            )
+        End If
+    End Sub
+
+    Private Sub mnuBuscar_Click(sender As Object, e As EventArgs) Handles mnuBuscar.Click
+        txtBuscar.Focus()
+    End Sub
+
+
 End Class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
